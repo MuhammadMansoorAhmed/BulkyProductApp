@@ -154,7 +154,7 @@ namespace BulkyProductApp.Areas.Admin.Product
             ProductViewModel ProductVM = new()
             {
                 CategoryList = CategoryList,
-                Products= new Products()
+                Products = product
             };
 
             return View(ProductVM);
@@ -185,6 +185,26 @@ namespace BulkyProductApp.Areas.Admin.Product
                 data = objProductsList,
             });
         }
+        public IActionResult DeleteProduct(int? id)
+        {
+            var productToBeDeleted = _UnitOfWork.Products.GetFirstOrDefault(u => u.ProductId == id);
+            if(productToBeDeleted == null)
+            {
+                return Json(new { success = false, message = "Error while Deleting" });
+            }
+
+            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productToBeDeleted.ImageUrl.TrimStart('/'));
+
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                System.IO.File.Delete(oldImagePath);
+            }
+            _UnitOfWork.Products.Delete(productToBeDeleted);
+            _UnitOfWork.Save();
+
+            return Json(new { success = true, message = "successfully Deleted" });
+        }
+
         #endregion
     }
 }

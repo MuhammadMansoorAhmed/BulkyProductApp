@@ -1,22 +1,17 @@
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function () {
     loadDataTable();
 });
 
 function loadDataTable() {
-    var dataTable = new DataTable('#dataTbl', {
-        ajax: {
-            url: '/Admin/Product/GetAll',
-            dataSrc: 'data' 
-        },
+    dataTable = $("#dataTbl").DataTable({
+        ajax: "/admin/product/getall",
         columns: [
-            { data: 'title' },
-            { data: 'isbn' },
-            { data: 'listPrice' },
-            { data: 'author' },
-            { data: 'category.name' },
-           
+            { data: "title" },
+            { data: "isbn" },
+            { data: "listPrice" },
+            { data: "author" },
+            { data: "category.name" },
+            { data: "" }
         ]
-    });
-
-    console.log(dataTable.data);
+    })
 }
