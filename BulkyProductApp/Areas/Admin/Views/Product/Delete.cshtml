@@ -1,0 +1,76 @@
+﻿@model ProductViewModel
+
+
+<div class="card shadow border-0 my-4">
+    <div class="card-Header bg-primary bg-gradient ms-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-center text-white py-2">Delete Product</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post">
+            <input asp-for="Products.ProductId" hidden />
+            <div class="border p-3 ">
+                <div class="form-floating  py-2 col-12">
+                    <input asp-for="Products.Title" disabled class="form-control border-0 shadow" />
+                    <label asp-for="Products.Title" class="ms-2">Product Name</label>
+                   
+                </div>
+                <div class="form-floating  py-2 col-12">
+                    <input asp-for="Products.Description" disabled class="form-control border-0 shadow" />
+                    <label asp-for="Products.Description" class="ms-2">Description</label>
+                </div>
+                <div class="form-floating  py-2 col-12">
+                    <input asp-for="Products.ISBN" disabled class="form-control border-0 shadow" />
+                    <label asp-for="Products.ISBN" class="ms-2">ISBN</label>
+                </div>
+                <div class="form-floating  py-2 col-12">
+                    <input asp-for="Products.Author" disabled class="form-control border-0 shadow" />
+                    <label asp-for="Products.Author" class="ms-2">Author</label>
+                </div>
+                <div class="form-floating  py-2 col-12">
+                    <input asp-for="Products.ListPrice" disabled class="form-control border-0 shadow" />
+                    <label asp-for="Products.ListPrice" class="ms-2">List Price</label>
+                    
+                </div>
+                <div class="form-floating  py-2 col-12">
+                    <input asp-for="Products.Price" disabled class="form-control border-0 shadow" />
+                    <label asp-for="Products.Price" class="ms-2">Price</label>
+                    
+                </div>
+                <div class="form-floating  py-2 col-12">
+                    <input asp-for="Products.Price50" disabled class="form-control border-0 shadow" />
+                    <label asp-for="Products.Price50" class="ms-2">Price Of 50+</label>
+                </div>
+                <div class="form-floating  py-2 col-12">
+                    <input asp-for="Products.Price100" disabled class="form-control border-0 shadow" />
+                    <label asp-for="Products.Price100" class="ms-2">Price Of 100+</label>
+                </div>
+                <div class="form-floating  py-2 col-12">
+                    <input asp-for="Products.ImageUrl" disabled class="form-control border-0 shadow" />
+                    <label asp-for="Products.ImageUrl" class="ms-2">Image</label>
+                    <span asp-validation-for="Products.ImageUrl" class="text-danger"></span>
+                </div>  
+                 <div class="form-floating py-2 col-12">
+                    <select asp-for="Products.CategoryId" disabled asp-items="@Model.CategoryList" class="form-select border-0 shadow">
+                        <option disabled selected>Select Category</option>
+                    </select>
+                    <label asp-for="Products.CategoryId" class="ms-2">Select Category</label>
+                    <span asp-validation-for="Products.CategoryId" class="text-danger"></span>
+                </div>
+                <div class="row p-2">
+                    <div class="col-md-3 col-6 p-1  ">
+                        <button type="submit" class="btn btn-primary rounded-0 form-control">Delete</button>
+                    </div>
+                    <div class="col-md-3 col-6 p-1">
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-light rounded-0 form-control">Back To List</a>
+                    </div>
+                </div>
+                @* if you want to add partial view other than scripts you can directly do it here 
+        <partial name="_ValidationScriptsPartial" /> *@
+            </div>
+        </form>
+    </div>
+</div>
